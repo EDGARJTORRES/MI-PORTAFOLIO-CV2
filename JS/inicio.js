@@ -26,6 +26,14 @@ document.addEventListener('DOMContentLoaded', function () {
         setColorMenuOpen(colorToggle.getAttribute('aria-expanded') !== 'true');
     });
 
+    colorMenu.querySelectorAll('[data-theme-color]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            cambiarEstilos(button.dataset.themeColor);
+        });
+    });
+
+    cambiarEstilos('rgb(16, 228, 217)');
+
     colorMenu.addEventListener('click', function () {
         setColorMenuOpen(false);
     });
@@ -118,6 +126,9 @@ function cambiarEstilos(color) {
         "--color-tema-texto",
         darkThemeTextColors[color] || "#ff7272"
     );
+    document.querySelectorAll("#colorMenu [data-theme-color]").forEach(function (button) {
+        button.setAttribute("aria-pressed", String(button.dataset.themeColor === color));
+    });
 
     // Cambia el color del texto
     let elementos = document.querySelectorAll(".texto-cambiable");
