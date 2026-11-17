@@ -1,20 +1,56 @@
 
-// Desplega el nav
 document.addEventListener('DOMContentLoaded', function () {
-    var navbarCollapse = document.querySelector('.navbar-collapse');
-    var navLinks = document.querySelectorAll('.nav-link');
+    const navbar = document.querySelector('.navbar-custom');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const navbarToggle = document.getElementById('navbarToggle');
+    const colorToggle = document.getElementById('dropdownMenuButton');
+    const colorMenu = document.getElementById('colorMenu');
 
-    navLinks.forEach(function (link) {
-      link.addEventListener('click', function () {
-        if (navbarCollapse.classList.contains('show')) {
-          var bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-            toggle: false
-          });
-          bsCollapse.hide();
-        }
-      });
+    function setMenuOpen(isOpen) {
+        navbarCollapse.classList.toggle('is-open', isOpen);
+        navbarToggle.setAttribute('aria-expanded', String(isOpen));
+        navbarToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+    }
+
+    function setColorMenuOpen(isOpen) {
+        colorMenu.classList.toggle('hidden', !isOpen);
+        colorToggle.setAttribute('aria-expanded', String(isOpen));
+    }
+
+    navbarToggle.addEventListener('click', function () {
+        setMenuOpen(navbarToggle.getAttribute('aria-expanded') !== 'true');
     });
-  });
+
+    colorToggle.addEventListener('click', function (event) {
+        event.stopPropagation();
+        setColorMenuOpen(colorToggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    colorMenu.addEventListener('click', function () {
+        setColorMenuOpen(false);
+    });
+
+    navbarCollapse.querySelectorAll('a.nav-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+            setMenuOpen(false);
+            setColorMenuOpen(false);
+        });
+    });
+
+    document.addEventListener('click', function (event) {
+        if (!navbar.contains(event.target)) {
+            setMenuOpen(false);
+            setColorMenuOpen(false);
+        }
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            setMenuOpen(false);
+            setColorMenuOpen(false);
+        }
+    });
+});
 
 // Propósito: Código JavaScript para el boton 
 document.addEventListener("DOMContentLoaded", function() {
@@ -69,9 +105,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-
 //cambiar colores a texto
 function cambiarEstilos(color) {
+    document.documentElement.style.setProperty("--color-tema", color);
+    const darkThemeTextColors = {
+        "rgb(99, 6, 6)": "#ff7272",
+        "rgb(16, 228, 217)": "#16e4d9",
+        "rgb(7, 75, 7)": "#69c775",
+        "rgb(255, 60, 0)": "#ff7043"
+    };
+    document.documentElement.style.setProperty(
+        "--color-tema-texto",
+        darkThemeTextColors[color] || "#ff7272"
+    );
+
     // Cambia el color del texto
     let elementos = document.querySelectorAll(".texto-cambiable");
     elementos.forEach(el => el.style.color = color);
@@ -142,4 +189,3 @@ function cambiarEstilos(color) {
      document.documentElement.style.setProperty("--color-subrayado", color);
 
 }
-
