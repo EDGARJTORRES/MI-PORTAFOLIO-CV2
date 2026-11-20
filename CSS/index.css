@@ -1485,7 +1485,7 @@ h5 {
 .navbar-custom {
   min-height: 76px;
   border-bottom-color: color-mix(in srgb, var(--color-tema) 55%, transparent);
-  background: rgba(12, 16, 22, 0.82);
+  background: rgba(12, 16, 22, 0);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
   backdrop-filter: blur(18px);
 }
@@ -1523,13 +1523,13 @@ h5 {
 
 #about .container {
   max-width: 1180px;
-  padding-top: 76px;
+  padding-top: 24px;
   display: block;
 }
 
 #about .container > .grid {
   position: relative;
-  top: -clamp(7rem, 15vh, 8rem);
+  top: -clamp(5rem, 10vh, 4rem);
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   min-height: 100%;
@@ -1542,7 +1542,7 @@ h5 {
   width: 100%;
   max-width: 900px;
   margin-inline: auto;
-  padding: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1.2rem, 2vw, 1.5rem);
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -1929,10 +1929,6 @@ body.theme-light .footer {
     padding: 5.5rem 0 3rem !important;
   }
 
-  #about .container > .grid {
-    top: -3.5rem;
-  }
-
   #about .container {
     padding-top: 0;
   }
@@ -2008,7 +2004,7 @@ body.theme-light .footer {
   min-height: 64px;
   padding-block: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(10, 14, 20, 0.78);
+  background: rgba(10, 14, 20, 0);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -2020,7 +2016,7 @@ body.theme-light .footer {
 
 .navbar-custom.transparent {
   border-bottom-color: rgba(255, 255, 255, 0.06);
-  background: rgba(10, 14, 20, 0.58) !important;
+  background: rgba(10, 14, 20, 0) !important;
 }
 
 .navbar-custom .container {
